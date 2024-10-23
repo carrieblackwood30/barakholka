@@ -25,10 +25,10 @@
         </div>
     </div>
 
-        <div class="flex gap-8 flex-wrap">
+        <div class="flex gap-8 flex-wrap" v-if="displayGoods">
             <div v-for="good in displayGoods" :key="good.id" class="border flex flex-col justify-between p-2">
                 <router-link :to="`/item/${good.header}`">
-                    <img :src="getImg(good.ImgId)" alt="Img" width="300">
+                    <img :src="getImg(good.ImgId)" alt="Img" class="max-h-[300px] w-full min-w-[330px]">
                     <div>
                         <h3 class="text-2xl font-bold">{{ good.header }}</h3>
                         <h4 class="text-xl font-semibold">{{ good.price }}тг</h4>
@@ -37,6 +37,9 @@
                     </div>
                 </router-link>
             </div>
+        </div>
+        <div v-else class="flex justify-center">
+            <loader />
         </div>
     </main>
     
@@ -48,6 +51,7 @@
     import { goods } from '@/lib/stores/goods';
     import { onMounted, ref } from 'vue';
     import { getImg } from "@/lib/stores/file";
+    import loader from '@/components/UI/loader.vue';
 
     const chosenCity = ref("")
     const allGoods = goods

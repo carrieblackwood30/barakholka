@@ -9,5 +9,5 @@ export const cities = [
     "all cities",
     "shymkent",
     "almaty",
-    "asktau"
+    "aktau"
 ]
